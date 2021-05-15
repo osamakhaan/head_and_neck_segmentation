@@ -2,6 +2,8 @@
 
 This is the final project for the Deep Learning Systems course at NYU Courant. The goal is to perform multi-organ segmentation for head and neck cancer.
 
+## Report
+Report containing detailed insights can be found [here](https://github.com/mok232/head_and_neck_segmentation/blob/main/report_v2.pdf)
 ## Data
 Please download the preprocessed data from [here](https://github.com/wentaozhu/AnatomyNet-for-anatomical-segmentation).
 
