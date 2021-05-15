@@ -77,15 +77,13 @@ python train_effective_bsz.py --effective_bsz 16 --num_epochs 1200 --exp_dir eff
 ```
 
 ### Data Parallelism
-In order to run the data parallelism experiments on multiple GPUs, run the following commands. Note that the input CT scans need to be resized to the same size in order to use a batch size greater than 1 on a single GPU. In this case, we resize CT scan to the average size of the CT scans in the training set i.e. `[78, 206, 164]`.
+In order to run the data parallelism experiments on multiple GPUs, run the following commands. Note that the input CT scans need to be resized to the same size in order to use a batch size greater than 1 on a single GPU. In this case, we resize each CT scan to the average size of the CT scans in the training set i.e. `[78, 206, 164]`.
 ```
 cd data_parallel
 CUDA_VISIBLE_DEVICES=0 python train_data_parallel.py --num_epochs 150 --exp_dir distributed_exp_1_gpu
 CUDA_VISIBLE_DEVICES=0,1 python train_data_parallel.py --num_epochs 300 --exp_dir distributed_exp_2_gpu
 CUDA_VISIBLE_DEVICES=0,1,2,3 python train_data_parallel.py --num_epochs 600 --exp_dir distributed_exp_4_gpu
 ```
-
-
 
 All the commands to replicate the experiments are also provided in the sbatch scripts in the respective directories.
 
