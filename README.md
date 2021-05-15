@@ -47,7 +47,7 @@ python train_augmentation.py --model segresnet --num_epochs 250 --exp_dir model_
 
 
 ### Self-supervised Learning
-To train the segmentation model based on the pretrained model from Models Genesis, run the following code. Note that the input needs to be resized in order to make it compatible with the pretrained model from Models Genesis. `crop1` resizes it to `[64, 128, 128]` whereas `crop2` resizes it to `[128, 128, 64]`.
+To train the segmentation model based on the pretrained model from [Models Genesis](https://github.com/MrGiovanni/ModelsGenesis), run the following code. Note that the input needs to be resized in order to make it compatible with the pretrained model from Models Genesis. `crop1` resizes it to `[64, 128, 128]` whereas `crop2` resizes it to `[128, 128, 64]`.
 ```
 cd ssl
 python train_ssl.py --transform crop1 --exp_dir no_pretrain_crop1
