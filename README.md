@@ -2,9 +2,21 @@
 
 This is the final project for the Deep Learning Systems course at NYU Courant. The goal is to perform multi-organ segmentation for head and neck cancer.
 
-## Libraries
+## Data
+Please download the preprocessed data from [here](https://github.com/wentaozhu/AnatomyNet-for-anatomical-segmentation).
 
-## Data Loading
+## Code Structure
+The repo is organized as follows. Each directory is dedicated to a particular set of experiments and contains the code files (`.py`) and the log files (`.log`) obtained from the corresponding experiments. In particular, the following structure is maintained:
+
+```
+|
+|- augmentation_model -- contains code and results for the baseline experiment, different models (unet, deeper unet, segresnet), different augmentations (affine, elastic, spatial crop, zoom) with and without delay
+|- data_parallel -- contains code and results for the data parallelism experiments with 1, 2 and 4 GPUs
+|- effective_bsz -- contains code and results for the effective batch size experiments with 2, 4, 8 and 16 effective batch sizes
+|- input_resize -- contains code and results for understanding the impact of resizing input CT scans on model performance
+|- ssl -- contains code and results of pretrained model from Models Genesis
+|- visualizations -- contains utility code for creating the different plots
+```
 
 ## Experiments
 
