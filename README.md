@@ -16,7 +16,7 @@ python train_augmentation.py --model unet --num_epochs 250 --exp_dir baseline
 ```
 
 ### Augmentations
-For a visualization of the different augmentations, refer to the [notebook](). To train the UNet model with 4 different augmentations (without delay i.e. start augmentation from the 1st epoch), run the following commands:
+For a visualization of the different augmentations, refer to the [notebook](augmentation_model/augmentations.ipynb). To train the UNet model with 4 different augmentations (without delay i.e. start augmentation from the 1st epoch), run the following commands:
 
 ```
 cd augmentation_model
