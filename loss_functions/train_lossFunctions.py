@@ -29,7 +29,7 @@ set_determinism(seed=0) # set deterministic training for reproducibility
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--exp_dir', type=str, default="exp")
-    parser.add_argument('--loss_fn', type=str, default="dice_loss | focal_loss | dice_focal_loss | masked_dice_loss | gen_dice_loss | tversky_loss | dice_CE_loss", help="[unet|deeper_unet|segresnet]")
+    parser.add_argument('--loss_fn', type=str, default="dice_loss", help="dice_loss | focal_loss | dice_focal_loss | masked_dice_loss | gen_dice_loss | tversky_loss | dice_CE_loss")
     parser.add_argument('--weights_file', type=str, default="best_weights")
     parser.add_argument('--activation', type=str, default="relu", help="[relu|leaky_relu]")
     parser.add_argument('--transform', type=str, default=None, help="[rand_affine|rand_elastic|rand_spatial_crop|rand_zoom]")
@@ -83,7 +83,7 @@ def main():
     best_per_class_dcs = [-1 for i in range(9)]
 
     start_time = time.time()
-    for epoch in range(150):
+    for epoch in range(args.num_epochs):
         epoch_time = time.time()
         trainloss = 0
         for x_train, y_train, flagvec in traindataloader:
@@ -95,8 +95,6 @@ def main():
             optimizer.zero_grad()
             pred = model(x_train)
             pred = F.softmax(pred, dim=1)
-
-
         
         if args.loss_fn == "dice_loss":
             logging.info("Training with Dice Loss")
