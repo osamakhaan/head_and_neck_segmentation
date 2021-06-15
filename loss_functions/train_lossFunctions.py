@@ -96,44 +96,44 @@ def main():
             pred = model(x_train)
             pred = F.softmax(pred, dim=1)
         
-        if args.loss_fn == "dice_loss":
-            logging.info("Training with Dice Loss")
-            print("Training with Dice Loss")
-            loss = monai.losses.DiceLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
-        elif args.loss_fn == "focal_loss":
-            logging.info("Training with Focal Loss")
-            print("Training with Focal Loss")
-            loss = monai.losses.FocalLoss(include_background=args.include_background)(pred, y_train)
-        elif args.loss_fn == "dice_focal_loss":
-            logging.info("Training with Dice Focal Loss")
-            print("Training with Dice Focal Loss")
-            loss = monai.losses.DiceFocalLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
-        elif args.loss_fn == "masked_dice_loss":
-            logging.info("Training with Masked Dice Loss")
-            print("Training with Masked Dice Loss")
-            loss = monai.losses.MaskedDiceLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
-        elif args.loss_fn == "gen_dice_loss":
-            logging.info("Training with Generalized Dice Loss")
-            print("Training with Generalized Dice Loss")
-            loss = monai.losses.GeneralizedDiceLoss(include_background=args.include_background)(pred, y_train)
-        elif args.loss_fn == "tversky_loss":
-            logging.info("Training with Tversky Loss")
-            print("Training with Tversky Loss")
-            loss = monai.losses.TverskyLoss(include_background=args.include_background)(pred, y_train)
-        elif args.loss_fn == "dice_CE_loss":
-            logging.info("Training with Dice CE Loss")
-            print("Training with Dice CE Loss")
-            loss = monai.losses.DiceCELoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
+            if args.loss_fn == "dice_loss":
+                logging.info("Training with Dice Loss")
+                print("Training with Dice Loss")
+                loss = monai.losses.DiceLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
+            elif args.loss_fn == "focal_loss":
+                logging.info("Training with Focal Loss")
+                print("Training with Focal Loss")
+                loss = monai.losses.FocalLoss(include_background=args.include_background)(pred, y_train)
+            elif args.loss_fn == "dice_focal_loss":
+                logging.info("Training with Dice Focal Loss")
+                print("Training with Dice Focal Loss")
+                loss = monai.losses.DiceFocalLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
+            elif args.loss_fn == "masked_dice_loss":
+                logging.info("Training with Masked Dice Loss")
+                print("Training with Masked Dice Loss")
+                loss = monai.losses.MaskedDiceLoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
+            elif args.loss_fn == "gen_dice_loss":
+                logging.info("Training with Generalized Dice Loss")
+                print("Training with Generalized Dice Loss")
+                loss = monai.losses.GeneralizedDiceLoss(include_background=args.include_background)(pred, y_train)
+            elif args.loss_fn == "tversky_loss":
+                logging.info("Training with Tversky Loss")
+                print("Training with Tversky Loss")
+                loss = monai.losses.TverskyLoss(include_background=args.include_background)(pred, y_train)
+            elif args.loss_fn == "dice_CE_loss":
+                logging.info("Training with Dice CE Loss")
+                print("Training with Dice CE Loss")
+                loss = monai.losses.DiceCELoss(include_background=args.include_background, squared_pred=args.squared_pred)(pred, y_train)
 
-        else:
-            raise Exception("No valid loss function provided")
+            else:
+                raise Exception("No valid loss function provided")
 
             
-        loss.backward()
-        optimizer.step()
-        trainloss += loss.item()
-        del loss, x_train, y_train, pred
-        
+            loss.backward()
+            optimizer.step()
+            trainloss += loss.item()
+            del loss, x_train, y_train, pred
+            
         print(f"Epoch [{epoch}] Train Loss = {trainloss}")
         logging.info(f"Epoch [{epoch}] Train Loss = {trainloss}")
         logging.info(f"Epoch [{epoch}] Time = {round(time.time()-epoch_time, 5)}")
